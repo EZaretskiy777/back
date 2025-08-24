@@ -15,7 +15,7 @@ const server = http.createServer((request, response) => {
   if (url.searchParams.has("users")) {
     response.statusCode = 200;
     response.statusMessage = "OK";
-    response.header = "Content-Type: text/json";
+    response.setHeader("Content-Type", "application/json");
     response.write(getUsers());
     response.end();
     return;
@@ -40,7 +40,7 @@ const server = http.createServer((request, response) => {
   if (otherParams.length > 0) {
     response.statusCode = 500;
     response.statusMessage = "Internal Server Error";
-    response.header = "Content-Type: text/plain";
+    response.setHeader("Content-Type", "text/plain");
     response.write("");
     response.end();
     return;
@@ -48,7 +48,7 @@ const server = http.createServer((request, response) => {
 
   response.statusCode = 200;
   response.statusMessage = "OK";
-  response.header = "Content-Type: text/plain";
+  response.setHeader("Content-Type", "text/plain");
   response.write("Hello, World!");
   response.end();
 });
